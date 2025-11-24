@@ -1,0 +1,13 @@
+{
+  "name": "vanilla-node-project",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Rimsha Shakoor",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node --watch  --env-file=.env server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
