@@ -7,11 +7,14 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "node --watch  --env-file=.env server.js",
+    "dev": "node --watch  --env-file=.env src/server.js",
+    "db:migrate": "node  --env-file=.env src/scripts/migrations.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "busboy": "^1.6.0",
+    "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3"
   }
 }
