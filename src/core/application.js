@@ -2,8 +2,6 @@
 
 export class App {
 
-
-
   // stores all incoming middlewares
   constructor() {
     this.middlewareList = [];
@@ -18,6 +16,7 @@ export class App {
   }
 
   handler(req, res) {
+    console.log("Middleware Array: ", this.middlewareList)
     let index = 0;
 
     const next = (err) => {

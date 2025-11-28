@@ -60,7 +60,6 @@ export class Router {
       const { pathname, searchParams } = parsedUrl || {};
 
       const dynamicRoute = pathname.split('/').filter(Boolean);
-      console.log("Dynamic route: ", dynamicRoute)
 
       // check the static routes with the dynamic routes
 
@@ -98,8 +97,7 @@ export class Router {
       }
       // include search params in params
       if (!isMatched) {
-        res.statusCode = 404;
-        res.end("This route does not exists.")
+        return next(new AppError('This route does not exists.', 404))
       }
 
       req.query = {};
@@ -116,8 +114,7 @@ export class Router {
 
     } catch (error) {
       console.log("Error executing router callback handler: ", error)
-      res.statusCode = 500;
-      res.end("Internal Server Error")
+      return next(error);
 
     }
 
