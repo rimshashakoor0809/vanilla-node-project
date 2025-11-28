@@ -40,9 +40,7 @@ export const bodyParser = (req, res, next) => {
 
     busboy.on('error', (err) => {
       console.log("Busboy error: ", err)
-      res.statusCode = 400;
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({ message: 'Error parsing multipart body', error: err?.message }))
+      return next(err)
     });
     req.pipe(busboy);
     return
@@ -80,10 +78,8 @@ export const bodyParser = (req, res, next) => {
       req.body = isBinary ? raw : body
       next();
     } catch (error) {
-      console.log("Error: ", error)
-      res.statusCode = 400;
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({ message: 'Error parsing body stream', error: error?.message }))
+      console.log("Error in body parser: ", error)
+      return next(error);
 
     }
   })
